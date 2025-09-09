@@ -6,6 +6,7 @@ import (
 
 	"github.com/joho/godotenv"
 	"github.com/spf13/cobra"
+	"maestro/internal/commands"
 )
 
 var (
@@ -116,6 +117,17 @@ A command-line interface for working with Maestro configurations.`,
 	rootCmd.PersistentFlags().StringVar(&mcpServerURI, "mcp-server-uri", "", "MCP server URI (overrides MAESTRO_MCP_SERVER_URI environment variable)")
 
 	// Add resource-based commands
+	rootCmd.AddCommand(
+		commands.NewValidateCommand(),
+		commands.NewCreateCommand(),
+		commands.NewRunCommand(),
+		commands.NewDeployCommand(),
+		commands.NewMermaidCommand(),
+		commands.NewMetaAgentsCommand(),
+		commands.NewServeCommand(),
+		commands.NewCleanCommand(),
+		commands.NewCreateCrCommand(),
+	)
 	rootCmd.AddCommand(vdbCmd)
 	rootCmd.AddCommand(collectionCmd)
 	rootCmd.AddCommand(documentCmd)
